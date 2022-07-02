@@ -1,0 +1,17 @@
+.navbar {
+    float: left;
+    width: 100%;
+    border-bottom: #ccc;
+}
+.container-logo {
+    width: 150px;
+}
+.container-logo img{
+    width: 100%;
+}
+.lista-menu ul li{
+    display: block;
+    padding: 15px;
+    display: inline-block;
+    text-align: center;
+    }

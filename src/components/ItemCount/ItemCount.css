@@ -1,0 +1,13 @@
+.itemCount {
+    display: flex;
+    margin: 5px auto;
+    align-items: center;
+}
+.itemCount p {
+        min-height: unset;
+        margin: 5px;
+    }
+.addcart {
+        display: flex;
+        align-items: s;
+}
