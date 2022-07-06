@@ -7,7 +7,7 @@ import Modal from '../Modal/Modal';
 import ItemCount from '../ItemCount/ItemCount';
 
 
-const CardItem = ({image, title, price}) => {
+const CardItem = ({image, title, price, stock}) => {
     const [open, setOpen] = useState(false)
     const handleClose = () => {
         setOpen(false)
@@ -22,7 +22,7 @@ const CardItem = ({image, title, price}) => {
                     <p>{title}</p>
                     <span>$ {price}</span>
                     <div className='count-item'>
-                        <ItemCount stock={5} count={1}/>
+                        <ItemCount stock={stock} initial={1}/>
                     </div>
                     <Button variant={'outlined'} onClick={() => setOpen(true)}>Detalle</Button>
                 </div>

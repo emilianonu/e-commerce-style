@@ -1,9 +1,9 @@
 import './ItemCount.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from '@mui/material';
 
-const ItemCount = ({stock}) => {
-        const [count, setCount] = useState(1);
+const ItemCount = ({stock, initial}) => {
+        const [count, setCount] = useState((initial));
         const addCount = () => {
             stock > count && setCount(count + 1);
         }

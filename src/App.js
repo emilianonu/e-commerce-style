@@ -2,14 +2,40 @@
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import CardList from './components/CardList/CardList';
-import Modal from './components/Modal/Modal';
-import {useState} from 'react';
+import productos from './utilidades/productsMock';
+import {useState, useEffect} from 'react';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
+
 
 function App() {
   const [open, setOpen] = useState(false)
-  const handleClose = () => {
-    setOpen(false)
-  }
+  const [products, setProducts] = useState([])
+ 
+
+  
+    
+
+    const getProducts = () => {
+      return new Promise ((resolve, reject) => {
+        setTimeout(() => {
+          resolve(productos)
+        }, 4000)
+      })
+    }
+    useEffect(() => {
+      getProducts()
+      .then((response) => {
+        setProducts(response)
+      })
+      .catch((err) => {
+        console.log(err)
+        })
+      .finally(() => {
+
+      })
+      }, [])
+
+
   return (
     //JSX
     <div className="App">
@@ -18,11 +44,10 @@ function App() {
           STYLE SHOP
         </div>
         <div className='general-container'>
-          <CardList title={'Nuevos Productos'}/>
-          <CardList title={'Nuevos Recomendados'}/>
+          <CardList title={'Nuevos Productos'} products={products}/>
+          <CardList title={'Nuevos Recomendados'} products={products}/>
         </div>
-        <button onClick={() => setOpen(true)}>Abrir Modal</button>
-        <Modal handleClose={handleClose} open={open}/>
+        <ItemDetailContainer />
     </div>
   );
 }
