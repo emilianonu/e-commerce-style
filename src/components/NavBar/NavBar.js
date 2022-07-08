@@ -4,13 +4,14 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import CartIcon from '../CartIcon/CartIcon';
+import { Link } from 'react-router-dom';
 
 
 
 //UpperCamelCase ej: "NavBar"
 const NavBar = () => {
     return (
-        <AppBar position="static">
+        <AppBar position="static" className='header-primary'>
           <Toolbar>
             <div className='container-logo'>
               <img src="./logo.png"/>
@@ -18,19 +19,18 @@ const NavBar = () => {
             <div className='lista-menu'>
               <ul>
                 <li>
-                  <button>Inicio</button>
+                  <button><Link to='/'>Inicio</Link></button>
                 </li>
                 <li>
                   <button>Productos</button>
                 </li>
                 <li>
-                  <button>Contacto</button>
+                  <button><Link to='/Contacto'>Contacto</Link></button>
                 </li>
                 <li>
                   <button>Como Comprar</button>
                 </li>
               </ul>
-              
             </div>
             
             <IconButton

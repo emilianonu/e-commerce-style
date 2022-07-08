@@ -5,9 +5,9 @@ import { Button } from '@mui/material';
 import { useState } from 'react';
 import Modal from '../Modal/Modal';
 import ItemCount from '../ItemCount/ItemCount';
+import { Link } from 'react-router-dom';
 
-
-const CardItem = ({image, title, price, stock}) => {
+const CardItem = ({image, title, price, stock, id}) => {
     const [open, setOpen] = useState(false)
     const handleClose = () => {
         setOpen(false)
@@ -16,15 +16,23 @@ const CardItem = ({image, title, price, stock}) => {
         <Card sx={{ minWidth: 275 }} className='card-item-container'>
             <CardContent>
                 <div className="card-item">
-                    <div>
-                        <img src={`./${image}`} alt={"producto"}/>
+                    <div className="card-item__img-box">
+                        <img src={`/${image}`} alt={"producto"}/> 
+                        <Button variant={'contained'} className="card-btn-details">
+                            <Link to={`/product/${id}`}>Ver Detalle</Link>
+                        </Button>
                     </div>
-                    <p>{title}</p>
-                    <span>$ {price}</span>
-                    <div className='count-item'>
-                        <ItemCount stock={stock} initial={1}/>
+                    <div className='card-item__data-box'>
+                        <div className='card-info-data'>
+                            <p>{title}</p>
+                            <span>$ {price}</span>
+                        </div>
+                        <div className='color-group-selector'>
+                            <button className='color-selector black'></button>
+                            <button className='color-selector green'></button>
+                            <button className='color-selector red'></button>
+                        </div>
                     </div>
-                    <Button variant={'outlined'} onClick={() => setOpen(true)}>Detalle</Button>
                 </div>
             </CardContent>
             <Modal handleClose={handleClose} open={open}>

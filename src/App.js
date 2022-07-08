@@ -1,53 +1,42 @@
 
 import './App.css';
-import NavBar from './components/NavBar/NavBar';
-import CardList from './components/CardList/CardList';
-import productos from './utilidades/productsMock';
-import {useState, useEffect} from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import NavBar from './components/NavBar/NavBar'
+import Home from './pages/Home';
+import Contacto from './pages/Contact';
+import NotFound from './pages/NotFound';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
+import Detalle from './pages/Detalle';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 
 
 function App() {
-  const [open, setOpen] = useState(false)
-  const [products, setProducts] = useState([])
- 
-
   
-    
-
-    const getProducts = () => {
-      return new Promise ((resolve, reject) => {
-        setTimeout(() => {
-          resolve(productos)
-        }, 4000)
-      })
-    }
-    useEffect(() => {
-      getProducts()
-      .then((response) => {
-        setProducts(response)
-      })
-      .catch((err) => {
-        console.log(err)
-        })
-      .finally(() => {
-
-      })
-      }, [])
 
 
   return (
     //JSX
     <div className="App">
-      <NavBar />
+      
+      <BrowserRouter>
+        <NavBar />        
         <div className='title-up'>
           STYLE SHOP
         </div>
-        <div className='general-container'>
-          <CardList title={'Nuevos Productos'} products={products}/>
-          <CardList title={'Nuevos Recomendados'} products={products}/>
-        </div>
-        <ItemDetailContainer />
+        <Routes>
+          {/*<Route path='/Products' element={<CardList title={'Nuevos Recomendados'} products={products}/>}/>*/}
+          <Route path='/' element={<Home />}/>
+          <Route path='/product/:id' element={<Detalle/>}/>
+          <Route path='/Contact' element={<Contacto />}/>
+          <Route path='*' element={<NotFound />}/> 
+        </Routes>
+      </BrowserRouter>
+      <div className='general-container'>
+          {/*<CardList title={'Nuevos Productos'} products={products}/>
+          {/*<CardList title={'Nuevos Recomendados'} products={products}/>*/}
+      </div>
+      <ItemListContainer/>
+      <ItemDetailContainer />
     </div>
   );
 }

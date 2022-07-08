@@ -13,7 +13,11 @@ const CardList = ({title, products}) => {
               const {title, price, image, id, stock} = producto
               return(
                 <Grid item md={3} key={id}>
-                  <CardAll title={title} price={price} image={image} stock={stock}/>
+                  <CardAll title={title} 
+                  price={price} 
+                  image={image} 
+                  stock={stock} 
+                  id={id}/>
                 </Grid>
               )
             })
