@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import CardList from "../CardList/CardList";
 import productos from "../../utilidades/productsMock";
 import { useParams } from "react-router-dom";
+import ProductList from "../../pages/ProductList";
 
 
 const ItemListContainer = () =>{
@@ -34,7 +35,7 @@ const ItemListContainer = () =>{
 
     return (
         <div>
-            <CardList productList={productos}/>}
+            <CardList productList={productos}/>
         </div>
     )
 }

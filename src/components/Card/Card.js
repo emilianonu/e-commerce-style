@@ -1,19 +1,19 @@
 import './Card.css'
+import { useState, useContext } from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Button } from '@mui/material';
-import { useState } from 'react';
-import Modal from '../Modal/Modal';
-import ItemCount from '../ItemCount/ItemCount';
+import Modal from '../Modal/Modal'
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../../context/ThemeContext'
+import CartContext from '../../context/CartContext'
 
-const CardItem = ({image, title, price, stock, id}) => {
-    const [open, setOpen] = useState(false)
-    const handleClose = () => {
-        setOpen(false)
-    }
+//Functional Component
+const CardItem = ({ image, title, price, stock, id}) => {
+    const { darkTheme } = useContext(ThemeContext)
+    const { addProductToCart } = useContext(CartContext)
     return(
-        <Card sx={{ minWidth: 275 }} className='card-item-container'>
+        <Card sx={{ minWidth: 275 }} className={`card-item-container ${darkTheme ? 'dark-mode' : ''}`}>
             <CardContent>
                 <div className="card-item">
                     <div className="card-item__img-box">
@@ -32,13 +32,16 @@ const CardItem = ({image, title, price, stock, id}) => {
                             <button className='color-selector green'></button>
                             <button className='color-selector red'></button>
                         </div>
+                        <Button 
+                            variant={'contained'} 
+                            className="card-item-button"
+                            onClick={() => addProductToCart({ image, title, price, stock, id})}
+                        >
+                                Agregar al carrito
+                    </Button>
                     </div>
                 </div>
             </CardContent>
-            <Modal handleClose={handleClose} open={open}>
-                <h2>Detalle</h2>
-                <img src={`./${image}`} alt={"producto"}/>
-            </Modal>
         </Card>
     )
 }

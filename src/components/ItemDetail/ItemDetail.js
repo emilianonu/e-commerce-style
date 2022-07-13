@@ -1,31 +1,41 @@
-import ItemCount from "../ItemCount/ItemCount"
-import { MenuItem } from "@mui/material"
-import Select from "@mui/material"
-import { useState } from "react"
+import { useState } from 'react';
+import { Link } from 'react-router-dom'
+import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import './ItemDetail.css'
+import ItemCount from '../ItemCount/ItemCount';
+import { Button } from '@mui/material';
 
 
 const ItemDetail = ({data}) => {
-    console.log("Data desde ItemDetail", data)
-
     const [size, setSize] = useState('');
+    const [cantidad, setCantidad] = useState(1)
+    const [showButton, setShowButton] = useState(false)
 
     const handleChange = (event) => {
         setSize(event.target.value);
     };
+    const addProductToCart = () => {
+        console.log("PRODUCTO A AGREGAR: ", data)
+        console.log("CANTIDAD:", cantidad )
+    }
 
-    return(
-        <div>
-            Informacion del producto
-            <img src={data.image} alt={data.title} width="400" />
-            <div className="detail-product-info__title">
-                <h1>{data.title}</h1>
-                <FavoriteBorderIcon />
+    console.log("Data desde ItemDetail: ", data)
+    return (
+        <div className='detail-product-container'>
+            <div className="detail-product-image">
+                <img src={`/${data.image}`} alt="imgProduct"/>
             </div>
-            <h2>{data.description}</h2>
-            <h3>$ {data.price}</h3>
-            <span>3 Cuotas sin interés de $ {data.price / 3}</span>
+            <div className="detail-product-info">
+                <div className='detail-product-info__title'>
+                    <h2>{data.title}</h2>
+                    <FavoriteBorderIcon  />
+                </div>
+                <p>{data.price}</p>
+                <span>3 Cuotas sin interés de $ {data.price / 3}</span>
                 <div className='color-group-selector'>
                     <button className='color-selector black'></button>
                     <button className='color-selector green'></button>
@@ -33,7 +43,7 @@ const ItemDetail = ({data}) => {
                 </div>
                 
                 <label>Selecciona tu talle</label>
-                {/*<Select
+                <Select
                     className='select-custom'
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -46,8 +56,18 @@ const ItemDetail = ({data}) => {
                     <MenuItem value={'l'}>L</MenuItem>
                     <MenuItem value={'xl'}>XL</MenuItem>
                     <MenuItem value={'xxl'}>XXL</MenuItem>
-                </Select>*/}
-            <ItemCount stock={data.stock} initial={1} />
+                </Select>
+                {!showButton ?
+                <ItemCount 
+                    cantidad={cantidad}
+                    setShowButton={setShowButton}
+                    setCantidad={setCantidad}
+                />
+                :
+                <Button variant='outlined'><Link to='/cart'>Termina mi compra</Link></Button>
+                }
+                
+            </div>
         </div>
     )
 }
