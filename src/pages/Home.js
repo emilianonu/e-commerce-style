@@ -9,9 +9,9 @@ const Home = () => {
 
     return(
         <div className='general-container'>
-            <CardList className='gcIlTitle' title={'Oferta del mes'}/>
-            <CardList className='gcIlTitle' title={'Productos Recomendados'}/>
-            <CardList className='gcIlTitle' title={'Descuentos especiales'}/>
+            <CardList title={'ON SALE! 20% OFF'}/>
+            <CardList title={'Productos Recomendados'}/>
+            <CardList title={'Temporada invierno 2022'}/>
         </div>
     )
 }

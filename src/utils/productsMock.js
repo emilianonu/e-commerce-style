@@ -5,6 +5,7 @@ const productos = [
       image : 'jean-1.jpeg',
       descripcion: 'jean',
       stock: 10,
+      category: "jean",
       id: 1
     },
     {
@@ -13,6 +14,7 @@ const productos = [
       image : 'jean-2.jpeg',
       descripcion: 'jean',
       stock: 13,
+      category: "jean",
       id: 2
     },
     {
@@ -20,6 +22,7 @@ const productos = [
       price: 3000,
       image : 'jean-3.jpeg',
       descripcion: 'jean',
+      category: "jean",
       stock: 13,
       id: 3
     },
